@@ -9,5 +9,6 @@ namespace BulTur.Server.Data
         public BulTurDbContext(DbContextOptions<BulTurDbContext> options) : base(options)
         {
         }
+        public DbSet<Region> Regions { get; set; } = default!;
     }
 }
