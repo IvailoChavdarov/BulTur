@@ -1,4 +1,5 @@
 using BulTur.Server.Data;
+using BulTur.Server.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace BulTur.Server
@@ -31,9 +32,12 @@ namespace BulTur.Server
                           .AllowCredentials();
                 });
             });
+
+            builder.Services.AddAuthorization();
+            builder.Services.AddIdentityApiEndpoints<StaffAccount>()
+                .AddEntityFrameworkStores<BulTurDbContext>();
+
             var app = builder.Build();
-
-
 
             app.UseDefaultFiles();
             app.UseStaticFiles();
@@ -50,6 +54,9 @@ namespace BulTur.Server
 
             app.UseAuthorization();
 
+            app.UseAuthentication();
+            app.UseAuthorization();
+            app.MapIdentityApi<StaffAccount>();
 
             app.MapControllers();
 
