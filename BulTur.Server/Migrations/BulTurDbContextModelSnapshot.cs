@@ -44,10 +44,6 @@ namespace BulTur.Server.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
-                    b.Property<string>("PolygonCoords")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("ShortTitle")
                         .IsRequired()
                         .HasMaxLength(150)
@@ -64,7 +60,6 @@ namespace BulTur.Server.Migrations
                             BannerImageUrl = "https://e-tourguide.eu/wp-content/uploads/2023/09/BL-d-scaled.jpeg",
                             Description = "Vibrant region in southwestern Bulgaria, known for its stunning natural landscapes and cultural richness. Home to the majestic Pirin Mountains, the region offers breathtaking hiking trails, crystal-clear glacial lakes, and the famous ski resort of Bansko. Beyond its natural beauty, Blagoevgrad boasts a rich historical and cultural heritage, with charming villages like Melnik, famous for its wine and unique sandstone formations. The region is a crossroads of traditions, with influences from Bulgarian, Macedonian, and Greek cultures. Blagoevgrad city itself is a youthful hub, home to two major universities and a thriving arts scene.",
                             Name = "Blagoevgrad",
-                            PolygonCoords = "Placeholder",
                             ShortTitle = "Gateway to the Pirin Mountains and rich in cultural diversity."
                         },
                         new
@@ -73,224 +68,207 @@ namespace BulTur.Server.Migrations
                             BannerImageUrl = "https://images.musement.com/cover/0153/15/thumb_15214687_cover_header.jpg",
                             Description = "Situated along the Black Sea coast, Burgas is a region of captivating beauty and dynamic energy. Its pristine beaches and lively seaside resorts, such as Sunny Beach and Sozopol, attract visitors year-round. Burgas is also home to the enchanting Strandzha Mountains, a haven for nature lovers with ancient forests and mysterious Thracian sanctuaries. The city of Burgas, the region's heart, combines modern urban life with cultural treasures, like the Sea Garden park and vibrant music festivals. Nearby, the UNESCO-listed Nessebar showcases a rich history with its cobbled streets and ancient churches.",
                             Name = "Burgas",
-                            PolygonCoords = "Placeholder",
                             ShortTitle = "Seaside charm with stunning beaches and vibrant festivals."
                         },
                         new
                         {
                             Id = (short)3,
-                            BannerImageUrl = "https://pronewsdobrich.bg//i/2024/02/21/374669.jpg",
-                            Description = "Dobrich is the breadbasket of Bulgaria, famed for its vast wheat fields and agricultural bounty. Located in northeastern Bulgaria, the region offers a serene rural charm and proximity to the Black Sea. Dobrich city is known for its beautiful parks, historic monuments, and dedication to the arts. Visitors can explore the architectural and ethnographic complex \"The Old Dobrich,\" which showcases the region's traditional crafts. Dobrich is also home to Balchik, a picturesque seaside town featuring a stunning botanical garden and the historic Balchik Palace.",
-                            Name = "Dobrich",
-                            PolygonCoords = "Placeholder",
-                            ShortTitle = "Fertile lands, golden wheat fields, and peaceful rural charm."
-                        },
-                        new
-                        {
-                            Id = (short)4,
-                            BannerImageUrl = "https://static.tildacdn.com/tild6438-3932-4838-b866-343530623565/Index-1640.jpg",
-                            Description = "Nestled in the heart of Bulgaria, Gabrovo is a land of humor, craftsmanship, and mountain beauty. The region is best known as Bulgaria's capital of humor, hosting the annual Carnival of Humor and Satire. Gabrovo city is home to the unique Museum of Humor and Satire, which reflects the region’s playful spirit. Surrounded by the Balkan Mountains, Gabrovo also offers nature lovers scenic hiking trails and access to the majestic Shipka Pass. Nearby, the architectural and ethnographic complex Etar presents a living museum of Bulgarian traditions and crafts.",
-                            Name = "Gabrovo",
-                            PolygonCoords = "Placeholder",
-                            ShortTitle = "Bulgaria’s humor capital, nestled in the Balkan Mountains."
-                        },
-                        new
-                        {
-                            Id = (short)5,
-                            BannerImageUrl = "https://scontent.fsof8-1.fna.fbcdn.net/v/t39.30808-6/308462846_197358342649338_6104546279624722250_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=36SU3nuuprAQ7kNvgF4Ub6d&_nc_zt=23&_nc_ht=scontent.fsof8-1.fna&_nc_gid=ASauLKOzOKd00ie_BDh6J9p&oh=00_AYDf2jZmbumdbgkMDNYL_E7p8YHY8oJVOfxcuB7PRuryTw&oe=67AAD046",
-                            Description = "Haskovo, located in southern Bulgaria, is a region steeped in history and rich in natural beauty. It is home to ancient Thracian sites such as the rock-hewn Perperikon, a mystical archaeological complex. Haskovo city boasts the world’s tallest statue of the Virgin Mary, a symbol of peace and faith. The region is known for its lush vineyards, producing fine wines, and mineral springs, offering relaxation and rejuvenation. Visitors can also explore the nearby Uzundzhovo Church, a fascinating blend of Christian and Ottoman architecture.",
-                            Name = "Haskovo",
-                            PolygonCoords = "Placeholder",
-                            ShortTitle = "Land of vineyards, rich history, and the tallest Virgin Mary statue."
-                        },
-                        new
-                        {
-                            Id = (short)6,
-                            BannerImageUrl = "https://kardzhali.org/wp-content/uploads/2020/11/KARDZHALI-31.jpg",
-                            Description = "Kardzhali, in the heart of the Rhodope Mountains, offers a mix of mysticism, history, and breathtaking nature. The region is famous for its ancient Thracian sanctuaries, such as the mysterious Tatul and the Stone Mushrooms rock formations. Kardzhali Reservoir provides stunning views and opportunities for water sports. The town of Kardzhali is a cultural hub, featuring the History Museum, which displays artifacts from the region’s rich past. The region’s traditions are deeply rooted, reflecting a harmonious blend of different cultures and religions.",
-                            Name = "Kardzhali",
-                            PolygonCoords = "Placeholder",
-                            ShortTitle = "Mystical landscapes, ancient Thracian ruins, and unique traditions."
-                        },
-                        new
-                        {
-                            Id = (short)7,
-                            BannerImageUrl = "https://destinations.bg/wp-content/uploads/2020/11/%D0%9A%D1%8E%D1%81%D1%82%D0%B5%D0%BD%D0%B4%D0%B8%D0%BB-%D0%B8%D0%B7%D0%B3%D0%BB%D0%B5%D0%B4-2048x1365.jpg",
-                            Description = "Kyustendil is a picturesque region in southwestern Bulgaria, celebrated for its mineral springs and lush orchards. Known as the 'Fruit Garden of Bulgaria,' it offers visitors scenic countryside and relaxing spa towns like Sapareva Banya. The town of Kyustendil is rich in history, featuring Roman ruins and the medieval Hisarlaka Fortress. The Osogovo Mountain nearby is perfect for hiking and skiing, making Kyustendil a haven for both relaxation and adventure.",
-                            Name = "Kyustendil",
-                            PolygonCoords = "Placeholder",
-                            ShortTitle = "Land of orchards, mineral springs, and mountain getaways."
-                        },
-                        new
-                        {
-                            Id = (short)8,
-                            BannerImageUrl = "https://cdn.britannica.com/44/141144-050-45995E2A/bridge-Osum-River-Bulg-Lovech.jpg",
-                            Description = "Lovech, located in central Bulgaria, is a region of historical significance and natural beauty. The town of Lovech is famous for its iconic covered bridge, designed by the master builder Kolyu Ficheto. Visitors can explore the medieval Lovech Fortress, which offers stunning views of the surrounding landscape. Nearby, the Devetaki Plateau is home to the magnificent Devetashka Cave and Krushuna Waterfalls, perfect for nature enthusiasts. Lovech is also a key site in Bulgaria’s struggle for independence, with landmarks dedicated to its revolutionary past.",
-                            Name = "Lovech",
-                            PolygonCoords = "Placeholder",
-                            ShortTitle = "Rich history and natural wonders in central Bulgaria."
-                        },
-                        new
-                        {
-                            Id = (short)9,
-                            BannerImageUrl = "https://iseebg.com/wp-content/uploads/2020/08/Montana-City-01.jpg",
-                            Description = "Montana, located in northwestern Bulgaria, is a region of serene beauty and historical intrigue. The region is dominated by the Balkan Mountains, offering excellent opportunities for hiking and exploration. The town of Montana boasts archaeological treasures from ancient Roman times and a vibrant cultural scene. Nearby, the Ogosta Reservoir provides a tranquil escape for fishing and water activities. The Chiprovtsi Monastery and the unique Chiprovtsi carpets, part of UNESCO’s cultural heritage, are highlights of the region’s traditions.",
-                            Name = "Montana",
-                            PolygonCoords = "Placeholder",
-                            ShortTitle = "Mountainous landscapes and rich cultural heritage."
-                        },
-                        new
-                        {
-                            Id = (short)10,
-                            BannerImageUrl = "https://www.bhfieldschool.org/uploaded/b2279560996177ba1d9e84e74ff4d34aa6c0bc67.jpg",
-                            Description = "Pazardzhik, in southern Bulgaria, is a region of vibrant cultural traditions and natural diversity. The town of Pazardzhik is known for its historical landmarks, such as the Church of the Assumption and the beautiful Pazardzhik Clock Tower. The region is home to the Rila Mountains, offering access to Bulgaria’s famous Seven Lakes and numerous hiking trails. Visitors can also enjoy the mineral springs and spa facilities in Velingrad, one of the country’s top wellness destinations.",
-                            Name = "Pazardzhik",
-                            PolygonCoords = "Placeholder",
-                            ShortTitle = "A blend of natural beauty, history, and wellness retreats."
-                        },
-                        new
-                        {
-                            Id = (short)11,
-                            BannerImageUrl = "https://pernik.bg/wp-content/uploads/2020/10/dsc008493-scaled.jpg",
-                            Description = "Pernik, a region in western Bulgaria, is best known for its vibrant Surva Festival, an annual celebration of traditional masked rituals. The town of Pernik, once a hub for mining, has transformed into a cultural and historical destination, featuring the medieval Krakra Fortress and the Regional History Museum. The region is also close to the picturesque Vitosha Mountain and the unique Zemen Monastery, offering visitors a mix of cultural experiences and natural wonders.",
-                            Name = "Pernik",
-                            PolygonCoords = "Placeholder",
-                            ShortTitle = "Festive traditions and ancient landmarks near the capital."
-                        },
-                        new
-                        {
-                            Id = (short)12,
-                            BannerImageUrl = "https://www.pleven.bg/uploads/sliders/sp-0002.jpg",
-                            Description = "Pleven is a region of rich history and breathtaking landscapes in northern Bulgaria. The town of Pleven is famous for the Pleven Panorama, a monument commemorating the Russo-Turkish War. The Kaylaka Park, with its caves and ancient ruins, offers a serene retreat for nature lovers. Pleven is also known for its fertile lands, producing some of Bulgaria’s finest wines. The region’s blend of historical significance and natural beauty makes it a must-visit destination.",
-                            Name = "Pleven",
-                            PolygonCoords = "Placeholder",
-                            ShortTitle = "Historic monuments and lush vineyards in northern Bulgaria."
-                        },
-                        new
-                        {
-                            Id = (short)13,
-                            BannerImageUrl = "https://tripjive.com/wp-content/uploads/2024/06/What-are-the-must-see-places-in-Plovdiv.jpg",
-                            Description = "Plovdiv, Bulgaria’s second-largest city and one of Europe’s oldest continuously inhabited settlements, is the heart of this dynamic region. Known for its Roman amphitheater, charming Old Town, and vibrant Kapana arts district, Plovdiv blends history with modernity. The surrounding region offers lush vineyards, picturesque villages, and access to the Rhodope Mountains. With its rich cultural calendar and timeless beauty, Plovdiv is a thriving hub of art, history, and innovation.",
-                            Name = "Plovdiv",
-                            PolygonCoords = "Placeholder",
-                            ShortTitle = "Europe’s oldest city with a thriving cultural scene."
-                        },
-                        new
-                        {
-                            Id = (short)15,
-                            BannerImageUrl = "https://obshtinaruse.bg/cache/thumbnails/99072ffe8e36363d7c04c8b3f9664ea168c51cd5/99b6eb064bc30ddbcc3508e6c0e7e3291ef3df76-2f34c7479324895b9d3f46c2aade4ee4.jpg",
-                            Description = "Ruse, located on the banks of the Danube River, is often called 'Little Vienna' for its elegant architecture and cultural charm. The town of Ruse boasts beautiful landmarks like the Freedom Monument and the Dohodno Zdanie theater. The surrounding region offers picturesque views of the Danube and natural wonders like the Rusenski Lom Nature Park, home to ancient rock-hewn churches and diverse wildlife. Ruse is a gateway to history, nature, and artistic inspiration.",
-                            Name = "Ruse",
-                            PolygonCoords = "Placeholder",
-                            ShortTitle = "Elegant architecture and Danube riverfront charm."
-                        },
-                        new
-                        {
-                            Id = (short)16,
-                            BannerImageUrl = "https://scontent.fsof11-1.fna.fbcdn.net/v/t39.30808-6/391707720_710123534485955_3377674961047611069_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=9zKbD8IgRvgQ7kNvgFJzfas&_nc_zt=23&_nc_ht=scontent.fsof11-1.fna&_nc_gid=AU2B3fuCOkL95GW6oTxphCd&oh=00_AYAM7F9GpsDS9ZEQ2oVS5uaNZ4NV8Z8rRNZOznlOrH1z3A&oe=67AC471D",
-                            Description = "Shumen is a region of historical significance and natural beauty in northeastern Bulgaria. The town of Shumen is famous for the Monument to 1300 Years of Bulgaria and the majestic Shumen Fortress. Nearby, the Madara Rider, a UNESCO World Heritage Site, showcases Bulgaria's early medieval heritage. The region also offers beautiful nature spots, such as the Shumen Plateau Nature Park, perfect for hiking and exploring. Shumen is a harmonious blend of history, culture, and nature.",
-                            Name = "Shumen",
-                            PolygonCoords = "Placeholder",
-                            ShortTitle = "UNESCO heritage and rich medieval history."
-                        },
-                        new
-                        {
-                            Id = (short)17,
-                            BannerImageUrl = "https://kab.bg/core/wp-content/uploads/2020/01/rk_backgrounds__0009_Silistra.jpg",
-                            Description = "Silistra is a peaceful region located along the Danube River in northeastern Bulgaria. The town of Silistra is home to an ancient Roman fortress and the beautiful Danube Park. The region’s Srebarna Nature Reserve, a UNESCO World Heritage Site, is a haven for birdwatchers, featuring diverse bird species and wetlands. With its tranquil riverside views and historical sites, Silistra is a hidden gem for nature lovers and history buffs alike.",
-                            Name = "Silistra",
-                            PolygonCoords = "Placeholder",
-                            ShortTitle = "Danube serenity and unique natural reserves."
-                        },
-                        new
-                        {
-                            Id = (short)18,
-                            BannerImageUrl = "https://kab.bg/core/wp-content/uploads/2020/01/rk_backgrounds__0008_Sliven.jpg",
-                            Description = "Sliven, located in southeastern Bulgaria, is a region of majestic mountains and rich traditions. The town of Sliven is known for its Blue Rocks Nature Park, which offers stunning landscapes and outdoor adventures. The region is also home to numerous wineries and historic sites, such as the Hadzhi Dimitar Museum House, dedicated to Bulgaria’s revolutionary past. Sliven’s blend of natural beauty, history, and wine culture makes it a captivating destination.",
-                            Name = "Sliven",
-                            PolygonCoords = "Placeholder",
-                            ShortTitle = "Mountain adventures and rich revolutionary history."
-                        },
-                        new
-                        {
-                            Id = (short)19,
-                            BannerImageUrl = "https://scontent.fsof11-1.fna.fbcdn.net/v/t39.30808-6/438092947_907909981347683_6694488866353887147_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=jgFjS6eueXcQ7kNvgFYi4-8&_nc_zt=23&_nc_ht=scontent.fsof11-1.fna&_nc_gid=AOSIaXHOhUoKfl2nDTdaZNI&oh=00_AYCQL_Vwhinrha-Hh8XDzkyDv9rQOzyfJfdX0iKw1kPqnQ&oe=67AC4666",
-                            Description = "Smolyan, in the heart of the Rhodope Mountains, is a region of breathtaking natural beauty and rich folklore. The town of Smolyan is known for its stunning lakes, charming architecture, and the impressive Smolyan Planetarium. Visitors can explore the nearby Pamporovo ski resort or visit the Yagodina Cave and Devil’s Throat Cave, which are steeped in myth and legend. Smolyan is a destination for nature enthusiasts and cultural explorers.",
-                            Name = "Smolyan",
-                            PolygonCoords = "Placeholder",
-                            ShortTitle = "Mountain landscapes and timeless folklore traditions."
-                        },
-                        new
-                        {
-                            Id = (short)20,
-                            BannerImageUrl = "https://lp-cms-production.imgix.net/2024-08/500pxRF121116733.jpg",
-                            Description = "Sofia City, Bulgaria’s capital, is a vibrant metropolis blending ancient history with modern life. The city is home to iconic landmarks like Alexander Nevsky Cathedral, Vitosha Boulevard, and the Boyana Church, a UNESCO World Heritage Site. Surrounded by Vitosha Mountain, Sofia offers both urban experiences and outdoor escapes. With its thriving arts scene, rich history, and lively nightlife, Sofia is a hub of culture, innovation, and exploration.",
-                            Name = "Sofia City",
-                            PolygonCoords = "Placeholder",
-                            ShortTitle = "The heart of Bulgaria’s history and modernity."
-                        },
-                        new
-                        {
-                            Id = (short)21,
-                            BannerImageUrl = "https://www.civitatis.com/f/bulgaria/sofia/sofia.jpg",
-                            Description = "Sofia Province, surrounding the capital, offers its own unique charm with breathtaking natural landscapes and cultural treasures. The region is home to Borovets, Bulgaria’s oldest ski resort, and the serene Seven Rila Lakes, a natural wonder. Towns like Samokov and Sapareva Banya boast mineral springs and historical landmarks. From mountain adventures to wellness retreats, Sofia Province is a captivating destination for all types of travelers.",
-                            Name = "Sofia Province",
-                            PolygonCoords = "Placeholder",
-                            ShortTitle = "Stunning mountains, mineral springs, and serene lakes."
-                        },
-                        new
-                        {
-                            Id = (short)22,
-                            BannerImageUrl = "https://www.informationbulgaria.com/wp-content/uploads/2019/10/Stara-Zagora-Bulgaria.jpg",
-                            Description = "Stara Zagora is a region of ancient history and modern vitality in southern Bulgaria. The town of Stara Zagora is famous for its Roman forum, ancient mosaics, and beautiful Ayazmoto Park. The region’s Thracian heritage is showcased in nearby archaeological sites like the Valley of Thracian Kings. Known as the 'City of Linden Trees,' Stara Zagora offers a harmonious blend of historical exploration and natural beauty.",
-                            Name = "Stara Zagora",
-                            PolygonCoords = "Placeholder",
-                            ShortTitle = "Ancient Thracian treasures and vibrant modern life."
-                        },
-                        new
-                        {
-                            Id = (short)23,
-                            BannerImageUrl = "https://www.eufunds.bg/sites/default/files/uploads/oic/doc-icons/2021-11/%D0%BE%D0%B1%D1%89%D0%B8%D0%BD%D0%B0%20%D1%82%D1%8A%D1%80%D0%B3%D0%BE%D0%B2%D0%B8%D1%89%D0%B5.jpg",
-                            Description = "Targovishte is a serene region in northeastern Bulgaria, offering a mix of history, culture, and natural beauty. The town of Targovishte is known for its Revival-era architecture and rich traditions. Visitors can explore the Krumovo Kale Fortress and enjoy the picturesque beauty of the Preslav Forests. The region is also renowned for its winemaking heritage, producing high-quality wines that reflect the local terroir. Targovishte is a peaceful destination with a deep connection to its roots.",
-                            Name = "Targovishte",
-                            PolygonCoords = "Placeholder",
-                            ShortTitle = "Historic charm and winemaking traditions."
-                        },
-                        new
-                        {
-                            Id = (short)24,
                             BannerImageUrl = "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/15/4d/45/a5/varna.jpg?w=1400&h=1400&s=1",
                             Description = "Varna, known as the 'Sea Capital' of Bulgaria, is a dynamic region along the Black Sea coast. The city of Varna is famous for its golden beaches, vibrant nightlife, and cultural landmarks like the Roman Baths and the Archaeological Museum, home to the world's oldest gold treasure. The region also boasts natural wonders such as the Stone Forest and the picturesque Cape Kaliakra. Varna combines seaside relaxation with historical exploration.",
                             Name = "Varna",
-                            PolygonCoords = "Placeholder",
                             ShortTitle = "Golden beaches and the world’s oldest gold treasure."
                         },
                         new
                         {
-                            Id = (short)25,
+                            Id = (short)4,
                             BannerImageUrl = "https://www.veliko-tarnovo.bg/uploads/slider/2024/a9698a837e44e0a3b421b85d8a05b948.jpg",
                             Description = "Veliko Tarnovo is a region steeped in history, located in north-central Bulgaria. The town of Veliko Tarnovo, once the medieval capital of Bulgaria, is renowned for the majestic Tsarevets Fortress and its cobblestone streets lined with traditional crafts. Nearby, the village of Arbanasi offers stunning architecture and ancient monasteries. The region’s rich history and picturesque landscapes make it one of Bulgaria’s most captivating destinations.",
                             Name = "Veliko Tarnovo",
-                            PolygonCoords = "Placeholder",
                             ShortTitle = "Medieval glory and picturesque landscapes."
                         },
                         new
                         {
-                            Id = (short)26,
+                            Id = (short)5,
                             BannerImageUrl = "https://www.niebg.net/d2020/sites/default/files/Zaglavna%20baba%20vida_1.jpg",
                             Description = "Vidin, situated along the Danube River in northwestern Bulgaria, is a region of historical significance and natural beauty. The town of Vidin is home to the well-preserved Baba Vida Fortress, a symbol of Bulgaria’s medieval past. The region’s natural highlights include the picturesque Belogradchik Rocks and the Magura Cave, featuring prehistoric cave paintings. Vidin is a destination where history and nature come together in harmony.",
                             Name = "Vidin",
-                            PolygonCoords = "Placeholder",
                             ShortTitle = "Danube beauty and the iconic Belogradchik Rocks."
                         },
                         new
                         {
-                            Id = (short)27,
+                            Id = (short)6,
                             BannerImageUrl = "https://www.vratza.bg/files/9a7d85be0e55c23aa8eda21bbd300a67.jpg",
                             Description = "Vratsa, located in northwestern Bulgaria, is a region of dramatic landscapes and heroic history. The town of Vratsa is nestled at the foot of the Balkan Mountains, offering access to the awe-inspiring Vratsata Gorge, a paradise for climbers. The Ledenika Cave, with its stunning formations, is another natural wonder. Vratsa also honors the legacy of Bulgarian revolutionary Hristo Botev, whose memory is celebrated with an annual festival.",
                             Name = "Vratsa",
-                            PolygonCoords = "Placeholder",
                             ShortTitle = "Towering cliffs and revolutionary spirit."
+                        },
+                        new
+                        {
+                            Id = (short)7,
+                            BannerImageUrl = "https://static.tildacdn.com/tild6438-3932-4838-b866-343530623565/Index-1640.jpg",
+                            Description = "Nestled in the heart of Bulgaria, Gabrovo is a land of humor, craftsmanship, and mountain beauty. The region is best known as Bulgaria's capital of humor, hosting the annual Carnival of Humor and Satire. Gabrovo city is home to the unique Museum of Humor and Satire, which reflects the region’s playful spirit. Surrounded by the Balkan Mountains, Gabrovo also offers nature lovers scenic hiking trails and access to the majestic Shipka Pass. Nearby, the architectural and ethnographic complex Etar presents a living museum of Bulgarian traditions and crafts.",
+                            Name = "Gabrovo",
+                            ShortTitle = "Bulgaria’s humor capital, nestled in the Balkan Mountains."
+                        },
+                        new
+                        {
+                            Id = (short)8,
+                            BannerImageUrl = "https://pronewsdobrich.bg//i/2024/02/21/374669.jpg",
+                            Description = "Dobrich is the breadbasket of Bulgaria, famed for its vast wheat fields and agricultural bounty. Located in northeastern Bulgaria, the region offers a serene rural charm and proximity to the Black Sea. Dobrich city is known for its beautiful parks, historic monuments, and dedication to the arts. Visitors can explore the architectural and ethnographic complex \"The Old Dobrich,\" which showcases the region's traditional crafts. Dobrich is also home to Balchik, a picturesque seaside town featuring a stunning botanical garden and the historic Balchik Palace.",
+                            Name = "Dobrich",
+                            ShortTitle = "Fertile lands, golden wheat fields, and peaceful rural charm."
+                        },
+                        new
+                        {
+                            Id = (short)9,
+                            BannerImageUrl = "https://kardzhali.org/wp-content/uploads/2020/11/KARDZHALI-31.jpg",
+                            Description = "Kardzhali, in the heart of the Rhodope Mountains, offers a mix of mysticism, history, and breathtaking nature. The region is famous for its ancient Thracian sanctuaries, such as the mysterious Tatul and the Stone Mushrooms rock formations. Kardzhali Reservoir provides stunning views and opportunities for water sports. The town of Kardzhali is a cultural hub, featuring the History Museum, which displays artifacts from the region’s rich past. The region’s traditions are deeply rooted, reflecting a harmonious blend of different cultures and religions.",
+                            Name = "Kardzhali",
+                            ShortTitle = "Mystical landscapes, ancient Thracian ruins, and unique traditions."
+                        },
+                        new
+                        {
+                            Id = (short)10,
+                            BannerImageUrl = "https://destinations.bg/wp-content/uploads/2020/11/%D0%9A%D1%8E%D1%81%D1%82%D0%B5%D0%BD%D0%B4%D0%B8%D0%BB-%D0%B8%D0%B7%D0%B3%D0%BB%D0%B5%D0%B4-2048x1365.jpg",
+                            Description = "Kyustendil is a picturesque region in southwestern Bulgaria, celebrated for its mineral springs and lush orchards. Known as the 'Fruit Garden of Bulgaria,' it offers visitors scenic countryside and relaxing spa towns like Sapareva Banya. The town of Kyustendil is rich in history, featuring Roman ruins and the medieval Hisarlaka Fortress. The Osogovo Mountain nearby is perfect for hiking and skiing, making Kyustendil a haven for both relaxation and adventure.",
+                            Name = "Kyustendil",
+                            ShortTitle = "Land of orchards, mineral springs, and mountain getaways."
+                        },
+                        new
+                        {
+                            Id = (short)11,
+                            BannerImageUrl = "https://cdn.britannica.com/44/141144-050-45995E2A/bridge-Osum-River-Bulg-Lovech.jpg",
+                            Description = "Lovech, located in central Bulgaria, is a region of historical significance and natural beauty. The town of Lovech is famous for its iconic covered bridge, designed by the master builder Kolyu Ficheto. Visitors can explore the medieval Lovech Fortress, which offers stunning views of the surrounding landscape. Nearby, the Devetaki Plateau is home to the magnificent Devetashka Cave and Krushuna Waterfalls, perfect for nature enthusiasts. Lovech is also a key site in Bulgaria’s struggle for independence, with landmarks dedicated to its revolutionary past.",
+                            Name = "Lovech",
+                            ShortTitle = "Rich history and natural wonders in central Bulgaria."
+                        },
+                        new
+                        {
+                            Id = (short)12,
+                            BannerImageUrl = "https://iseebg.com/wp-content/uploads/2020/08/Montana-City-01.jpg",
+                            Description = "Montana, located in northwestern Bulgaria, is a region of serene beauty and historical intrigue. The region is dominated by the Balkan Mountains, offering excellent opportunities for hiking and exploration. The town of Montana boasts archaeological treasures from ancient Roman times and a vibrant cultural scene. Nearby, the Ogosta Reservoir provides a tranquil escape for fishing and water activities. The Chiprovtsi Monastery and the unique Chiprovtsi carpets, part of UNESCO’s cultural heritage, are highlights of the region’s traditions.",
+                            Name = "Montana",
+                            ShortTitle = "Mountainous landscapes and rich cultural heritage."
+                        },
+                        new
+                        {
+                            Id = (short)13,
+                            BannerImageUrl = "https://www.bhfieldschool.org/uploaded/b2279560996177ba1d9e84e74ff4d34aa6c0bc67.jpg",
+                            Description = "Pazardzhik, in southern Bulgaria, is a region of vibrant cultural traditions and natural diversity. The town of Pazardzhik is known for its historical landmarks, such as the Church of the Assumption and the beautiful Pazardzhik Clock Tower. The region is home to the Rila Mountains, offering access to Bulgaria’s famous Seven Lakes and numerous hiking trails. Visitors can also enjoy the mineral springs and spa facilities in Velingrad, one of the country’s top wellness destinations.",
+                            Name = "Pazardzhik",
+                            ShortTitle = "A blend of natural beauty, history, and wellness retreats."
+                        },
+                        new
+                        {
+                            Id = (short)14,
+                            BannerImageUrl = "https://pernik.bg/wp-content/uploads/2020/10/dsc008493-scaled.jpg",
+                            Description = "Pernik, a region in western Bulgaria, is best known for its vibrant Surva Festival, an annual celebration of traditional masked rituals. The town of Pernik, once a hub for mining, has transformed into a cultural and historical destination, featuring the medieval Krakra Fortress and the Regional History Museum. The region is also close to the picturesque Vitosha Mountain and the unique Zemen Monastery, offering visitors a mix of cultural experiences and natural wonders.",
+                            Name = "Pernik",
+                            ShortTitle = "Festive traditions and ancient landmarks near the capital."
+                        },
+                        new
+                        {
+                            Id = (short)15,
+                            BannerImageUrl = "https://www.pleven.bg/uploads/sliders/sp-0002.jpg",
+                            Description = "Pleven is a region of rich history and breathtaking landscapes in northern Bulgaria. The town of Pleven is famous for the Pleven Panorama, a monument commemorating the Russo-Turkish War. The Kaylaka Park, with its caves and ancient ruins, offers a serene retreat for nature lovers. Pleven is also known for its fertile lands, producing some of Bulgaria’s finest wines. The region’s blend of historical significance and natural beauty makes it a must-visit destination.",
+                            Name = "Pleven",
+                            ShortTitle = "Historic monuments and lush vineyards in northern Bulgaria."
+                        },
+                        new
+                        {
+                            Id = (short)16,
+                            BannerImageUrl = "https://tripjive.com/wp-content/uploads/2024/06/What-are-the-must-see-places-in-Plovdiv.jpg",
+                            Description = "Plovdiv, Bulgaria’s second-largest city and one of Europe’s oldest continuously inhabited settlements, is the heart of this dynamic region. Known for its Roman amphitheater, charming Old Town, and vibrant Kapana arts district, Plovdiv blends history with modernity. The surrounding region offers lush vineyards, picturesque villages, and access to the Rhodope Mountains. With its rich cultural calendar and timeless beauty, Plovdiv is a thriving hub of art, history, and innovation.",
+                            Name = "Plovdiv",
+                            ShortTitle = "Europe’s oldest city with a thriving cultural scene."
+                        },
+                        new
+                        {
+                            Id = (short)17,
+                            BannerImageUrl = "https://scontent.fsof11-1.fna.fbcdn.net/v/t1.6435-9/93409502_1387709224733958_1440812174615248896_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=2285d6&_nc_ohc=oAlUtEczipsQ7kNvgEBEVLa&_nc_zt=23&_nc_ht=scontent.fsof11-1.fna&_nc_gid=AdHw_VI8zHq-HKEHXKmwcS-&oh=00_AYBJ1sPGZdL7QZ7vfk4urZIPTzZ1o6L4ur0E3NRUj1oR7g&oe=67CFE343",
+                            Description = "Razgrad is a tranquil region in northeastern Bulgaria, rich in history and surrounded by nature. The town of Razgrad is home to the ancient ruins of Abritus, an important Thracian and Roman settlement. Visitors can explore the Ottoman-era Ibrahim Pasha Mosque, a cultural gem in the heart of the city. The region’s rolling hills and lush forests provide a peaceful escape, making it a great destination for history enthusiasts and nature lovers.",
+                            Name = "Razgrad",
+                            ShortTitle = "Ancient ruins and serene landscapes in northeastern Bulgaria."
+                        },
+                        new
+                        {
+                            Id = (short)18,
+                            BannerImageUrl = "https://obshtinaruse.bg/cache/thumbnails/99072ffe8e36363d7c04c8b3f9664ea168c51cd5/99b6eb064bc30ddbcc3508e6c0e7e3291ef3df76-2f34c7479324895b9d3f46c2aade4ee4.jpg",
+                            Description = "Ruse, located on the banks of the Danube River, is often called 'Little Vienna' for its elegant architecture and cultural charm. The town of Ruse boasts beautiful landmarks like the Freedom Monument and the Dohodno Zdanie theater. The surrounding region offers picturesque views of the Danube and natural wonders like the Rusenski Lom Nature Park, home to ancient rock-hewn churches and diverse wildlife. Ruse is a gateway to history, nature, and artistic inspiration.",
+                            Name = "Ruse",
+                            ShortTitle = "Elegant architecture and Danube riverfront charm."
+                        },
+                        new
+                        {
+                            Id = (short)19,
+                            BannerImageUrl = "https://kab.bg/core/wp-content/uploads/2020/01/rk_backgrounds__0009_Silistra.jpg",
+                            Description = "Silistra is a peaceful region located along the Danube River in northeastern Bulgaria. The town of Silistra is home to an ancient Roman fortress and the beautiful Danube Park. The region’s Srebarna Nature Reserve, a UNESCO World Heritage Site, is a haven for birdwatchers, featuring diverse bird species and wetlands. With its tranquil riverside views and historical sites, Silistra is a hidden gem for nature lovers and history buffs alike.",
+                            Name = "Silistra",
+                            ShortTitle = "Danube serenity and unique natural reserves."
+                        },
+                        new
+                        {
+                            Id = (short)20,
+                            BannerImageUrl = "https://kab.bg/core/wp-content/uploads/2020/01/rk_backgrounds__0008_Sliven.jpg",
+                            Description = "Sliven, located in southeastern Bulgaria, is a region of majestic mountains and rich traditions. The town of Sliven is known for its Blue Rocks Nature Park, which offers stunning landscapes and outdoor adventures. The region is also home to numerous wineries and historic sites, such as the Hadzhi Dimitar Museum House, dedicated to Bulgaria’s revolutionary past. Sliven’s blend of natural beauty, history, and wine culture makes it a captivating destination.",
+                            Name = "Sliven",
+                            ShortTitle = "Mountain adventures and rich revolutionary history."
+                        },
+                        new
+                        {
+                            Id = (short)21,
+                            BannerImageUrl = "https://scontent.fsof11-1.fna.fbcdn.net/v/t39.30808-6/438092947_907909981347683_6694488866353887147_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=jgFjS6eueXcQ7kNvgFYi4-8&_nc_zt=23&_nc_ht=scontent.fsof11-1.fna&_nc_gid=AOSIaXHOhUoKfl2nDTdaZNI&oh=00_AYCQL_Vwhinrha-Hh8XDzkyDv9rQOzyfJfdX0iKw1kPqnQ&oe=67AC4666",
+                            Description = "Smolyan, in the heart of the Rhodope Mountains, is a region of breathtaking natural beauty and rich folklore. The town of Smolyan is known for its stunning lakes, charming architecture, and the impressive Smolyan Planetarium. Visitors can explore the nearby Pamporovo ski resort or visit the Yagodina Cave and Devil’s Throat Cave, which are steeped in myth and legend. Smolyan is a destination for nature enthusiasts and cultural explorers.",
+                            Name = "Smolyan",
+                            ShortTitle = "Mountain landscapes and timeless folklore traditions."
+                        },
+                        new
+                        {
+                            Id = (short)22,
+                            BannerImageUrl = "https://lp-cms-production.imgix.net/2024-08/500pxRF121116733.jpg",
+                            Description = "Sofia City, Bulgaria’s capital, is a vibrant metropolis blending ancient history with modern life. The city is home to iconic landmarks like Alexander Nevsky Cathedral, Vitosha Boulevard, and the Boyana Church, a UNESCO World Heritage Site. Surrounded by Vitosha Mountain, Sofia offers both urban experiences and outdoor escapes. With its thriving arts scene, rich history, and lively nightlife, Sofia is a hub of culture, innovation, and exploration.",
+                            Name = "Sofia",
+                            ShortTitle = "The heart of Bulgaria’s history and modernity."
+                        },
+                        new
+                        {
+                            Id = (short)23,
+                            BannerImageUrl = "https://www.civitatis.com/f/bulgaria/sofia/sofia.jpg",
+                            Description = "Sofia Province, surrounding the capital, offers its own unique charm with breathtaking natural landscapes and cultural treasures. The region is home to Borovets, Bulgaria’s oldest ski resort, and the serene Seven Rila Lakes, a natural wonder. Towns like Samokov and Sapareva Banya boast mineral springs and historical landmarks. From mountain adventures to wellness retreats, Sofia Province is a captivating destination for all types of travelers.",
+                            Name = "Sofia Province",
+                            ShortTitle = "Stunning mountains, mineral springs, and serene lakes."
+                        },
+                        new
+                        {
+                            Id = (short)24,
+                            BannerImageUrl = "https://www.informationbulgaria.com/wp-content/uploads/2019/10/Stara-Zagora-Bulgaria.jpg",
+                            Description = "Stara Zagora is a region of ancient history and modern vitality in southern Bulgaria. The town of Stara Zagora is famous for its Roman forum, ancient mosaics, and beautiful Ayazmoto Park. The region’s Thracian heritage is showcased in nearby archaeological sites like the Valley of Thracian Kings. Known as the 'City of Linden Trees,' Stara Zagora offers a harmonious blend of historical exploration and natural beauty.",
+                            Name = "Stara Zagora",
+                            ShortTitle = "Ancient Thracian treasures and vibrant modern life."
+                        },
+                        new
+                        {
+                            Id = (short)25,
+                            BannerImageUrl = "https://www.eufunds.bg/sites/default/files/uploads/oic/doc-icons/2021-11/%D0%BE%D0%B1%D1%89%D0%B8%D0%BD%D0%B0%20%D1%82%D1%8A%D1%80%D0%B3%D0%BE%D0%B2%D0%B8%D1%89%D0%B5.jpg",
+                            Description = "Targovishte is a serene region in northeastern Bulgaria, offering a mix of history, culture, and natural beauty. The town of Targovishte is known for its Revival-era architecture and rich traditions. Visitors can explore the Krumovo Kale Fortress and enjoy the picturesque beauty of the Preslav Forests. The region is also renowned for its winemaking heritage, producing high-quality wines that reflect the local terroir. Targovishte is a peaceful destination with a deep connection to its roots.",
+                            Name = "Targovishte",
+                            ShortTitle = "Historic charm and winemaking traditions."
+                        },
+                        new
+                        {
+                            Id = (short)26,
+                            BannerImageUrl = "https://scontent.fsof8-1.fna.fbcdn.net/v/t39.30808-6/308462846_197358342649338_6104546279624722250_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=36SU3nuuprAQ7kNvgF4Ub6d&_nc_zt=23&_nc_ht=scontent.fsof8-1.fna&_nc_gid=ASauLKOzOKd00ie_BDh6J9p&oh=00_AYDf2jZmbumdbgkMDNYL_E7p8YHY8oJVOfxcuB7PRuryTw&oe=67AAD046",
+                            Description = "Haskovo, located in southern Bulgaria, is a region steeped in history and rich in natural beauty. It is home to ancient Thracian sites such as the rock-hewn Perperikon, a mystical archaeological complex. Haskovo city boasts the world’s tallest statue of the Virgin Mary, a symbol of peace and faith. The region is known for its lush vineyards, producing fine wines, and mineral springs, offering relaxation and rejuvenation. Visitors can also explore the nearby Uzundzhovo Church, a fascinating blend of Christian and Ottoman architecture.",
+                            Name = "Haskovo",
+                            ShortTitle = "Land of vineyards, rich history, and the tallest Virgin Mary statue."
+                        },
+                        new
+                        {
+                            Id = (short)27,
+                            BannerImageUrl = "https://scontent.fsof11-1.fna.fbcdn.net/v/t39.30808-6/391707720_710123534485955_3377674961047611069_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=9zKbD8IgRvgQ7kNvgFJzfas&_nc_zt=23&_nc_ht=scontent.fsof11-1.fna&_nc_gid=AU2B3fuCOkL95GW6oTxphCd&oh=00_AYAM7F9GpsDS9ZEQ2oVS5uaNZ4NV8Z8rRNZOznlOrH1z3A&oe=67AC471D",
+                            Description = "Shumen is a region of historical significance and natural beauty in northeastern Bulgaria. The town of Shumen is famous for the Monument to 1300 Years of Bulgaria and the majestic Shumen Fortress. Nearby, the Madara Rider, a UNESCO World Heritage Site, showcases Bulgaria's early medieval heritage. The region also offers beautiful nature spots, such as the Shumen Plateau Nature Park, perfect for hiking and exploring. Shumen is a harmonious blend of history, culture, and nature.",
+                            Name = "Shumen",
+                            ShortTitle = "UNESCO heritage and rich medieval history."
                         },
                         new
                         {
@@ -298,7 +276,6 @@ namespace BulTur.Server.Migrations
                             BannerImageUrl = "https://preotkrii.bg/wp-content/uploads/2024/08/yambol-ot-visoko.jpg",
                             Description = "Yambol, in southeastern Bulgaria, is a region of rural charm and ancient history. The town of Yambol is known for the unique Bezisten, an Ottoman-era covered market, and the ancient Thracian city of Kabyle nearby. The region’s fertile lands and vineyards produce excellent wines, adding to its appeal. Yambol’s blend of historical landmarks, natural beauty, and cultural traditions makes it a delightful destination to explore.",
                             Name = "Yambol",
-                            PolygonCoords = "Placeholder",
                             ShortTitle = "Thracian heritage and rich rural traditions."
                         });
                 });

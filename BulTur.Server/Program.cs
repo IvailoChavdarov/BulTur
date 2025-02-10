@@ -31,6 +31,13 @@ namespace BulTur.Server
                           .AllowAnyHeader()
                           .AllowAnyMethod()
                           .AllowCredentials();
+
+                });
+                options.AddPolicy("AllowSpecificOrigin", builder =>
+                {
+                    builder.WithOrigins("http://127.0.0.1:5500") // Add your client origin here
+                           .AllowAnyMethod()
+                           .AllowAnyHeader();
                 });
             });
 
