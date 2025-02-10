@@ -40,8 +40,13 @@ namespace BulTur.Server.Data
 
             // Add seed data for your Regions table
             modelBuilder.Entity<Region>().HasData(Region.GetDefaultData());
+
             // Seeds data for towns
             modelBuilder.Entity<Town>().HasData(Town.GetDefaultTownsData().ToArray());
+
+            // Seeds data for attraction types
+            modelBuilder.Entity<AttractionType>().HasData(AttractionType.GetDefaultAttractionTypes());
+
             // Seeds data for staff roles
             List<IdentityRole> rolesToSeed = new List<IdentityRole>
                 {
@@ -64,6 +69,7 @@ namespace BulTur.Server.Data
                         NormalizedName = "WRITER"
                     }
                 };
+
             modelBuilder.Entity<IdentityRole>().HasData(rolesToSeed);
         }
 
