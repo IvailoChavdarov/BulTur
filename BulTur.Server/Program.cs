@@ -70,6 +70,8 @@ namespace BulTur.Server
 
             app.MapFallbackToFile("/index.html");
 
+            //Town.GetDefaultTownsData();
+
             app.Run();
         }
     }

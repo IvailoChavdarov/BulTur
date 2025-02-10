@@ -39,6 +39,9 @@ namespace BulTur.Server.Models
         [Url]
         public string CoatOfArmsImageUrl { get; set; }
 
+        [NotMapped]
+        public List<Town> Towns { get; set; }
+
         //returns default data for the 28 regions to seed in the database on server start
         public static List<Region> GetDefaultData()
         {

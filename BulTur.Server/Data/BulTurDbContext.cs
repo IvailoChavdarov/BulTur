@@ -11,10 +11,17 @@ namespace BulTur.Server.Data
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //connects Towns and Regions table
+            modelBuilder.Entity<Town>()
+                .HasOne(t => t.Region)
+                .WithMany(r => r.Towns)
+                .HasForeignKey(t => t.RegionId);
+
             base.OnModelCreating(modelBuilder);
 
             // Add seed data for your Regions table
             modelBuilder.Entity<Region>().HasData(Region.GetDefaultData());
+            modelBuilder.Entity<Town>().HasData(Town.GetDefaultTownsData().ToArray());
         }
 
         public DbSet<Region> Regions { get; set; } = default!;
