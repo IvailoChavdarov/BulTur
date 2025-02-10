@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using BulTur.Server.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace BulTur.Server.Data
 {
@@ -21,7 +22,31 @@ namespace BulTur.Server.Data
 
             // Add seed data for your Regions table
             modelBuilder.Entity<Region>().HasData(Region.GetDefaultData());
+            // Seeds data for towns
             modelBuilder.Entity<Town>().HasData(Town.GetDefaultTownsData().ToArray());
+            // Seeds data for staff roles
+            List<IdentityRole> rolesToSeed = new List<IdentityRole>
+                {
+                    new IdentityRole
+                    {
+                        Id = "fc012751-2557-4a1c-98aa-d1d8dd7b4ff5", //static GUID
+                        Name = "Admin",
+                        NormalizedName = "ADMIN"
+                    },
+                    new IdentityRole
+                    {
+                        Id = "4e072768-3a78-4cc4-8d63-7ae87aaa5cae",
+                        Name = "Editor",
+                        NormalizedName = "EDITOR"
+                    },
+                    new IdentityRole
+                    {
+                        Id = "32066165-0fca-49b2-801d-fd4517b6d5db",
+                        Name = "Writer",
+                        NormalizedName = "WRITER"
+                    }
+                };
+            modelBuilder.Entity<IdentityRole>().HasData(rolesToSeed);
         }
 
         public DbSet<Region> Regions { get; set; } = default!;

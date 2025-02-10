@@ -43,6 +43,7 @@ namespace BulTur.Server
 
             builder.Services.AddAuthorization();
             builder.Services.AddIdentityApiEndpoints<StaffAccount>()
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<BulTurDbContext>();
 
             var app = builder.Build();
