@@ -24,6 +24,9 @@ namespace BulTur.Server.Models
         [NotMapped]
         public Region Region { get; set; }
 
+        [NotMapped]
+        public IEnumerable<Attraction> Attractions { get; set; }
+
         public static List<Town> GetDefaultTownsData()
         {
             List<Town> towns = new List<Town>();

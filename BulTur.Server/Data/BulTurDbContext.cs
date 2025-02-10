@@ -18,6 +18,24 @@ namespace BulTur.Server.Data
                 .WithMany(r => r.Towns)
                 .HasForeignKey(t => t.RegionId);
 
+            //connects Towns and Attractions table
+            modelBuilder.Entity<Town>()
+                .HasMany(t => t.Attractions)
+                .WithOne(a => a.Town)
+                .HasForeignKey(a => a.TownId);
+
+            //connects Attractions and AttractionImages table
+            modelBuilder.Entity<Attraction>()
+                .HasMany(a => a.Images)
+                .WithOne(i => i.Attraction)
+                .HasForeignKey(i => i.AttractionId);
+
+            //connects Attractions and AttractionTypes table
+            modelBuilder.Entity<Attraction>()
+                .HasOne(a => a.Type)
+                .WithMany(t => t.Attractions)
+                .HasForeignKey(a => a.TypeId);
+
             base.OnModelCreating(modelBuilder);
 
             // Add seed data for your Regions table
@@ -51,5 +69,8 @@ namespace BulTur.Server.Data
 
         public DbSet<Region> Regions { get; set; } = default!;
         public DbSet<Town> Towns { get; set; } = default!;
+        public DbSet<Town> Attractions { get; set; } = default!;
+        public DbSet<AttractionType> AttractionTypes { get; set; } = default!;
+        public DbSet<AttractionImage> AttractionImages { get; set; } = default!;
     }
 }
