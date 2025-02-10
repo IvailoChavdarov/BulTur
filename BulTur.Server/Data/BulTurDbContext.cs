@@ -25,5 +25,6 @@ namespace BulTur.Server.Data
         }
 
         public DbSet<Region> Regions { get; set; } = default!;
+        public DbSet<Town> Towns { get; set; } = default!;
     }
 }
