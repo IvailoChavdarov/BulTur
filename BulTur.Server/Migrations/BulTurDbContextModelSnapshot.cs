@@ -75,7 +75,7 @@ namespace BulTur.Server.Migrations
 
                     b.HasIndex("TypeId");
 
-                    b.ToTable("Attraction");
+                    b.ToTable("Attraction", (string)null);
                 });
 
             modelBuilder.Entity("BulTur.Server.Models.AttractionImage", b =>
@@ -100,7 +100,7 @@ namespace BulTur.Server.Migrations
 
                     b.HasIndex("AttractionId");
 
-                    b.ToTable("AttractionImages");
+                    b.ToTable("AttractionImages", (string)null);
                 });
 
             modelBuilder.Entity("BulTur.Server.Models.AttractionType", b =>
@@ -123,7 +123,7 @@ namespace BulTur.Server.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AttractionTypes");
+                    b.ToTable("AttractionTypes", (string)null);
 
                     b.HasData(
                         new
@@ -209,7 +209,7 @@ namespace BulTur.Server.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Regions");
+                    b.ToTable("Regions", (string)null);
 
                     b.HasData(
                         new
@@ -568,7 +568,7 @@ namespace BulTur.Server.Migrations
 
                     b.HasIndex("RegionId");
 
-                    b.ToTable("Town");
+                    b.ToTable("Town", (string)null);
 
                     b.HasData(
                         new
