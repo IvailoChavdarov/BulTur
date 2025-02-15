@@ -4,6 +4,7 @@ using BulTur.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BulTur.Server.Migrations
 {
     [DbContext(typeof(BulTurDbContext))]
-    partial class BulTurDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250211105844_fixedAttractionsTable")]
+    partial class fixedAttractionsTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,9 +51,6 @@ namespace BulTur.Server.Migrations
 
                     b.Property<bool>("IsAccepted")
                         .HasColumnType("bit");
-
-                    b.Property<string>("MapsEmbedUrl")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()

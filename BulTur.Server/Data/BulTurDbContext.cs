@@ -36,6 +36,8 @@ namespace BulTur.Server.Data
                 .WithMany(t => t.Attractions)
                 .HasForeignKey(a => a.TypeId);
 
+            //TODO: Connect StaffUser and Attraction tables
+
             base.OnModelCreating(modelBuilder);
 
             // Add seed data for your Regions table
@@ -75,7 +77,7 @@ namespace BulTur.Server.Data
 
         public DbSet<Region> Regions { get; set; } = default!;
         public DbSet<Town> Towns { get; set; } = default!;
-        public DbSet<Town> Attractions { get; set; } = default!;
+        public DbSet<Attraction> Attractions { get; set; } = default!;
         public DbSet<AttractionType> AttractionTypes { get; set; } = default!;
         public DbSet<AttractionImage> AttractionImages { get; set; } = default!;
     }
