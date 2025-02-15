@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using BulTur.Server.Dto;
 
 namespace BulTur.Server.Models
 {
@@ -20,5 +21,16 @@ namespace BulTur.Server.Models
 
         [NotMapped]
         public Attraction Attraction { get; set; }
+
+        public AttractionImage()
+        {
+        }
+
+        public AttractionImage(AttractionImageCreateDto dto)
+        {
+            AttractionId = dto.AttractionId;
+            Title = dto.Title;
+            ImageUrl = dto.ImageUrl;
+        }
     }
 }

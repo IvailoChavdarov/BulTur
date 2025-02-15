@@ -24,7 +24,7 @@ namespace BulTur.Server.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult Get(ushort id)
+        public ActionResult Get(ushort id)
         {
             AttractionType? attractionType = _db.AttractionTypes
                 .Include(at => at.Attractions)
@@ -37,7 +37,7 @@ namespace BulTur.Server.Controllers
         }
 
         [HttpPatch("{id}")]
-        public IActionResult Update(ushort id, [FromBody] AttractionTypeUpdateDto dto)
+        public ActionResult Update(ushort id, [FromBody] AttractionTypeUpdateDto dto)
         {
             AttractionType? attractionTypeToUpdate = _db.AttractionTypes.Find(id);
 

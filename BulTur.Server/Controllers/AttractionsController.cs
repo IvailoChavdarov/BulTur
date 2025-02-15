@@ -88,7 +88,7 @@ namespace BulTur.Server.Controllers
 
         //Adds attraction request to the database
         [HttpPost]
-        public ActionResult Post(AttractionCreateDto dto)
+        public ActionResult Post([FromBody] AttractionCreateDto dto)
         {
             //TODO change WriterId, add authorization
             Attraction newAttraction = new Attraction(dto);
@@ -98,7 +98,7 @@ namespace BulTur.Server.Controllers
         }
 
         [HttpPatch("{id}")]
-        public ActionResult Update(int id, AttractionUpdateDto dto)
+        public ActionResult Update(int id, [FromBody] AttractionUpdateDto dto)
         {
             //TODO add authorization
             Attraction? attractionToUpdate = _db.Attractions.Find(id);
