@@ -23,5 +23,8 @@ namespace BulTur.Server.Models
         [Required]
         [Phone]
         public string PhoneNumber { get; set; }
+
+        [NotMapped]
+        public IEnumerable<Attraction> AttractionsRequested { get; set; }
     }
 }

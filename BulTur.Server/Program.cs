@@ -2,6 +2,7 @@ using BulTur.Server.Data;
 using BulTur.Server.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace BulTur.Server
 {
@@ -12,68 +13,67 @@ namespace BulTur.Server
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-
             builder.Services.AddControllers()
                 .AddJsonOptions(options =>
                 {
                     options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
                     options.JsonSerializerOptions.DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull;
                 });
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-            builder.Services.AddEndpointsApiExplorer();
 
+            // Swagger
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen();
+
+            // Database Connection
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
             builder.Services.AddDbContext<BulTurDbContext>(options => options.UseSqlServer(connectionString));
 
-            builder.Services.AddSwaggerGen();
-
-            //To stop problems with Cors while testing
+            // CORS
             builder.Services.AddCors(options =>
             {
                 options.AddPolicy("AllowSpecificOrigin", policy =>
                 {
-                    policy.WithOrigins("https://localhost:5173") // Add your front-end URL
+                    policy.WithOrigins("https://localhost:5173", "http://127.0.0.1:5500")
                           .AllowAnyHeader()
                           .AllowAnyMethod()
                           .AllowCredentials();
-
-                });
-                options.AddPolicy("AllowSpecificOrigin", builder =>
-                {
-                    builder.WithOrigins("http://127.0.0.1:5500") // Add your client origin here
-                           .AllowAnyMethod()
-                           .AllowAnyHeader();
                 });
             });
 
-            builder.Services.AddAuthorization();
-            builder.Services.AddIdentityApiEndpoints<StaffAccount>()
+            // Identity
+            builder.Services.AddIdentity<StaffAccount, IdentityRole>()
                 .AddRoles<IdentityRole>()
-                .AddEntityFrameworkStores<BulTurDbContext>();
+                .AddEntityFrameworkStores<BulTurDbContext>()
+                .AddDefaultTokenProviders();
+
+            builder.Services.AddAuthorization();
 
             var app = builder.Build();
 
+            // Serve static files
             app.UseDefaultFiles();
             app.UseStaticFiles();
+
+            // Enable CORS
             app.UseCors("AllowSpecificOrigin");
 
-            // Configure the HTTP request pipeline.
+            // Enable Swagger in development
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
 
+            // Enable HTTPS
             app.UseHttpsRedirection();
-
-            app.UseAuthorization();
 
             app.UseAuthentication();
             app.UseAuthorization();
-            app.MapIdentityApi<StaffAccount>();
 
+            // Map Controllers
             app.MapControllers();
 
+            // Fallback for React Frontend
             app.MapFallbackToFile("/index.html");
 
             app.Run();

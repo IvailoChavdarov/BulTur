@@ -1,7 +1,9 @@
 ﻿using BulTur.Server.Data;
 using BulTur.Server.Dto;
 using BulTur.Server.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,9 +14,11 @@ namespace BulTur.Server.Controllers
     public class AttractionsController : ControllerBase
     {
         private readonly BulTurDbContext _db;
-        public AttractionsController(BulTurDbContext db)
+        private readonly UserManager<StaffAccount> _userManager;
+        public AttractionsController(BulTurDbContext db, UserManager<StaffAccount> userManager)
         {
             _db = db;
+            _userManager = userManager;
         }
 
         //returns attractions that will be shown to the user
@@ -29,8 +33,8 @@ namespace BulTur.Server.Controllers
                 .ToList();
         }
 
-        //TODO: Add authorization
         //returns attraction requests waiting for approval (by admin or editor)
+        [Authorize(Roles = "Admin, Editor")]
         [HttpGet("GetPending", Name = "GetPending")]
         public ActionResult<List<Attraction>> GetPending()
         {
@@ -42,8 +46,8 @@ namespace BulTur.Server.Controllers
                 .ToList();
         }
 
-        //TODO: Add authorization
         //returns all attractions (for editing/deleting by admin or editor)
+        [Authorize(Roles = "Admin, Editor")]
         [HttpGet("GetAll", Name = "GetAll")]
         public ActionResult<List<Attraction>> GetAll()
         {
@@ -58,7 +62,7 @@ namespace BulTur.Server.Controllers
         [HttpGet("{id}")]
         public ActionResult<Attraction> Get(int id)
         {
-            //TODO: restrict access to details of pending attractions for users with with no role and include writer if user is editor or admin
+
             Attraction? attractionData = _db.Attractions
                                             .Include(a => a.Type)
                                             .Include(a => a.Town)
@@ -66,6 +70,15 @@ namespace BulTur.Server.Controllers
                                             .FirstOrDefault(a=>a.Id==id);
 
             if (attractionData == null) return NotFound();
+
+            //Restricts access to details of pending attractions for unauthorized users
+            if (!attractionData.IsAccepted)
+            {
+                if (!User.Identity.IsAuthenticated)
+                {
+                    return Unauthorized();
+                }
+            }
 
             //increments clicks
             string cookieKey = $"attraction_{id}_clicked";
@@ -88,19 +101,27 @@ namespace BulTur.Server.Controllers
 
         //Adds attraction request to the database
         [HttpPost]
+        [Authorize]
         public ActionResult Post([FromBody] AttractionCreateDto dto)
         {
-            //TODO change WriterId, add authorization
+            dto.WriterId = _userManager.GetUserId(User);
+            if (string.IsNullOrEmpty(dto.WriterId))
+                return BadRequest("Writer is not valid");
+            if (!ModelState.IsValid)
+                return BadRequest("Input is not valid");
+
             Attraction newAttraction = new Attraction(dto);
+
             _db.Attractions.Add(newAttraction);
             _db.SaveChanges();
+
             return Ok();
         }
 
         [HttpPatch("{id}")]
+        [Authorize(Roles = "Admin, Editor")]
         public ActionResult Update(int id, [FromBody] AttractionUpdateDto dto)
         {
-            //TODO add authorization
             Attraction? attractionToUpdate = _db.Attractions.Find(id);
 
             if (attractionToUpdate == null) return NotFound();
@@ -121,10 +142,10 @@ namespace BulTur.Server.Controllers
             return Ok();
         }
 
+        [Authorize(Roles = "Admin, Editor")]
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
-            //TODO add authorization
             Attraction? attractionToUpdate = _db.Attractions.Find(id);
 
             if (attractionToUpdate == null) return NotFound();

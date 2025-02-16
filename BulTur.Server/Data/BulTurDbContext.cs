@@ -36,7 +36,12 @@ namespace BulTur.Server.Data
                 .WithMany(t => t.Attractions)
                 .HasForeignKey(a => a.TypeId);
 
-            //TODO: Connect StaffUser and Attraction tables
+
+            //connects Attractions and StaffUser tables
+            modelBuilder.Entity<Attraction>()
+                .HasOne(a => a.Writer)
+                .WithMany(t => t.AttractionsRequested)
+                .HasForeignKey(a => a.WriterId);
 
             base.OnModelCreating(modelBuilder);
 

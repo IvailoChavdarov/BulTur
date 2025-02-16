@@ -1,6 +1,7 @@
 ﻿using BulTur.Server.Data;
 using BulTur.Server.Dto;
 using BulTur.Server.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -36,6 +37,7 @@ namespace BulTur.Server.Controllers
             return NotFound();
         }
 
+        [Authorize(Roles = "Admin, Editor")]
         [HttpPatch("{id}")]
         public ActionResult Update(ushort id, [FromBody] AttractionTypeUpdateDto dto)
         {

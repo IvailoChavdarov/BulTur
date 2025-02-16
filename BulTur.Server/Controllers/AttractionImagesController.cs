@@ -1,6 +1,7 @@
 ﻿using BulTur.Server.Data;
 using BulTur.Server.Dto;
 using BulTur.Server.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,10 +26,10 @@ namespace BulTur.Server.Controllers
             return Ok(image);
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult Post([FromBody] AttractionImageCreateDto dto)
         {
-            //TODO: Add authorization
             AttractionImage newAttractionImage = new AttractionImage(dto);
             _db.AttractionImages.Add(newAttractionImage);
             _db.SaveChanges();

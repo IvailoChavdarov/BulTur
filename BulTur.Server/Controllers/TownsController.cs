@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using BulTur.Server.Data;
 using BulTur.Server.Models;
 using BulTur.Server.Dto;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BulTur.Server.Controllers
 {
@@ -42,6 +43,7 @@ namespace BulTur.Server.Controllers
 
         // PUT: api/Towns/{id}
         [HttpPatch("{id}")]
+        [Authorize(Roles = "Admin, Editor")]
         public async Task<IActionResult> Update(ushort id, TownUpdateDto dto)
         {
             Town? townToUpdate = _db.Towns.Find(id);
