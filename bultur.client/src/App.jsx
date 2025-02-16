@@ -1,11 +1,13 @@
-import './App.css';
+import './styles/global.scss';
+import TopNav from './components/TopNav/TopNav.jsx';
 
 function App() {
 
     return (
-        <div>
+        <>
+            <TopNav/>
             <h1 id="tableLabel">Home page</h1>
-        </div>
+        </>
     );
     
 }
