@@ -35,5 +35,19 @@ namespace BulTur.Server.Controllers
             _db.SaveChanges();
             return Ok();
         }
+
+        [Authorize]
+        [HttpDelete("{id}")]
+        public ActionResult Delete(int id)
+        {
+            AttractionImage? attractionImageToDelete = _db.AttractionImages.Find(id);
+
+            if (attractionImageToDelete == null)
+                return NotFound();
+
+            _db.AttractionImages.Remove(attractionImageToDelete);
+            _db.SaveChanges();
+            return Ok();
+        }
     }
 }
