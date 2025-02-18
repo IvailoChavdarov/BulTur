@@ -1,3 +1,68 @@
-.TopNav{
-    color:red;
+@import '../../styles/colors.scss';
+.TopNav {
+    background-color: $topnav-bgColor;
+    height: 83px;
+    position: fixed;
+    padding-left: 360px;
+    font-family: 'Playfair Display', sans-serif;
+    font-size: 22px;
+    display:block;
+    width:100vw;
+    top:0;
+
+    .logo-button {
+        height: 140px;
+        left: 200px;
+        position: absolute;
+        z-index: 99;
+    }
+
+    .topNav-link {
+        display: inline-block;
+        height: 100%;
+        margin-left: 15px;
+        margin-right: 10px;
+        text-align: center;
+        vertical-align: middle;
+        text-decoration: none;
+        line-height: 83px;
+        color: $topnav-color;
+        position: relative;
+
+        &::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: 18px;
+            width: 0;
+            height: 2px;
+            background-color: $topnav-color;
+            transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+        }
+
+        &:hover {
+
+            &::after {
+                width: 100%;
+                left: 0;
+            }
+        }
+
+        svg {
+            margin-right: 10px;
+        }
+    }
+
+    .icons-container {
+        display: inline-block;
+        line-height: 83px;
+        position:absolute;
+        right:400px;
+        a {
+            color: $topnav-color;
+            display: inline-block;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+    }
 }

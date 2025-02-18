@@ -1,5 +1,7 @@
 ﻿@import 'colors.scss';
-body
-{
-    background-color: $main-color;
+body {
+    background-color: $light-text;
+    padding: 0;
+    margin: 0;
+    padding-top:83px;
 }
