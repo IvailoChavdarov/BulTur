@@ -1,0 +1,132 @@
+@import '../../styles/colors.scss';
+
+.footer-main {
+    display: flex;
+    flex-wrap: nowrap;
+    position: absolute;
+    bottom: 0;
+    width: 100vw;
+    background-color: $topnav-bgColor;
+    padding-bottom: 35px;
+
+    .footer-col {
+        position: relative;
+        flex-basis: 100%;
+        text-align: center;
+        padding: 20px;
+        padding-top: 0px;
+
+        h3 {
+            font-size: x-large;
+            color: $text-accent;
+            padding: 5px;
+            padding-top: 0;
+
+            &::after {
+                content: "";
+                position: absolute;
+                left: 30%;
+                top: 63px;
+                width: 40%;
+                height: 1px;
+                border-radius: 2px;
+                background-color: $background-dark;
+                opacity: 0.4;
+            }
+        }
+
+        a {
+            color: $topnav-color;
+            text-decoration: none;
+            display: block;
+            padding: 5px;
+            font-size: large;
+
+            &:before, &:after {
+                display: inline-block;
+                opacity: 0;
+                -webkit-transition: -webkit-transform 0.3s, opacity 0.2s;
+                -moz-transition: -moz-transform 0.3s, opacity 0.2s;
+                transition: transform 0.3s, opacity 0.2s;
+                color: $text-accent;
+            }
+
+            &:before {
+                margin-right: 10px;
+                content: '[';
+                -webkit-transform: translateX(20px);
+                -moz-transform: translateX(20px);
+                transform: translateX(20px);
+            }
+
+            &:after {
+                margin-left: 10px;
+                content: ']';
+                -webkit-transform: translateX(-20px);
+                -moz-transform: translateX(-20px);
+                transform: translateX(-20px);
+            }
+
+            &:hover:before, &:hover:after, &:focus:before, &:focus:after {
+                opacity: 1;
+                -webkit-transform: translateX(0px);
+                -moz-transform: translateX(0px);
+                transform: translateX(0px);
+            }
+        }
+
+        &:nth-child(2) {
+            &::before {
+                content: "";
+                position: absolute;
+                left: 0;
+                top: 42%;
+                width: 2px;
+                height: 45%;
+                background-color: $background-dark;
+                border-radius: 2px;
+                opacity: 0.1;
+            }
+
+            &::after {
+                content: "";
+                position: absolute;
+                right: 0;
+                top: 42%;
+                width: 2px;
+                height: 45%;
+                background-color: $background-dark;
+                border-radius: 2px;
+                opacity: 0.1;
+            }
+        }
+    }
+
+    .footer-bottom {
+        position: absolute;
+        bottom: 0;
+        color: $background-dark;
+        width: 100%;
+        line-height: 35px;
+        left: 0;
+        padding: 0;
+        background-color: darken($main-color, 7);
+        text-align: center;
+    }
+
+    .socials-container {
+        a {
+            font-size: xx-large;
+            display: inline-block;
+            padding: 10px;
+
+            &:hover {
+                color: $text-accent;
+            }
+
+            &:before, &:after {
+                display: none;
+            }
+        }
+    }
+}

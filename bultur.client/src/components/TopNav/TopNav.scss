@@ -4,7 +4,7 @@
     height: 83px;
     position: fixed;
     padding-left: 360px;
-    font-family: 'Playfair Display', sans-serif;
+/*    font-family: 'Playfair Display', sans-serif;*/
     font-size: 22px;
     display:block;
     width:100vw;
@@ -20,6 +20,7 @@
     .topNav-link {
         display: inline-block;
         height: 100%;
+        padding:0 5px 0 5px;
         margin-left: 15px;
         margin-right: 10px;
         text-align: center;
@@ -36,8 +37,9 @@
             bottom: 18px;
             width: 0;
             height: 2px;
-            background-color: $topnav-color;
-            transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+            opacity:0;
+            background-color: $text-accent;
+            transition: width 0.3s ease-in-out, left 0.3s ease-in-out, opacity 0.2s ease;
         }
 
         &:hover {
@@ -45,6 +47,7 @@
             &::after {
                 width: 100%;
                 left: 0;
+                opacity:1;
             }
         }
 
