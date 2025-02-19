@@ -1,0 +1,58 @@
+@import '../../styles/colors.scss';
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
+
+.banner {
+    background-size: cover;
+    height: 470px;
+    text-align: center;
+    padding-top: 80px;
+    position: relative;
+
+    .banner-inner {
+        background-size: cover;
+        background-color: whitesmoke;
+        height: 260px;
+        box-shadow: 10px 20px 30px rgba(0,0,0,0.8);
+        padding: 70px;
+        padding-top: 30px;
+        width: 40vw;
+        margin: auto;
+        position: relative;
+
+        h1 {
+            margin-bottom: 30px;
+            font-family: "Lora", serif;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 45px;
+        }
+
+        h2 {
+            color: $main-color;
+            font-family: "Great Vibes", serif;
+            font-weight: 400;
+            font-style: normal;
+            font-size:2.2rem;
+        }
+
+        h4 {
+            font-style: italic;
+            text-align: right;
+            color: $text-accent;
+            font-size:larger;
+        }
+    }
+
+    .filter-dark {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color:$main-color;
+        opacity:0.2;
+        top: 0;
+    }
+
+    h1 {
+        margin: 0;
+    }
+}
