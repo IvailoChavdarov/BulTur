@@ -23,56 +23,115 @@ namespace BulTur.Server.Controllers
 
         //returns attractions that will be shown to the user
         [HttpGet]
-        public ActionResult<List<Attraction>> Get()
+        public ActionResult<List<AttractionDto>> Get()
         {
             return _db.Attractions
-                .Include(a=>a.Type)
-                .Include(a=>a.Town)
                 .Where(x=>x.IsAccepted)
-                .OrderByDescending(x=>x.Clicks)
+                .Select(attraction =>
+                    new AttractionDto
+                    {
+                        Id = attraction.Id,
+                        Name = attraction.Name,
+                        Description = attraction.Description,
+                        BannerImageUrl = attraction.BannerImageUrl,
+                        TownName = attraction.Town.Name,
+                        TypeName = attraction.Type.Name,
+                        WebsiteUrl = attraction.WebsiteUrl,
+                        InstagramUrl = attraction.InstagramUrl,
+                        FacebookUrl = attraction.FacebookUrl,
+                        MapsEmbedUrl = attraction.MapsEmbedUrl,
+                        PhoneNumber = attraction.PhoneNumber,
+                        Clicks = attraction.Clicks
+                    }
+                )
+                .OrderByDescending(x => x.Clicks)
                 .ToList();
         }
 
         //returns attraction requests waiting for approval (by admin or editor)
         [Authorize(Roles = "Admin, Editor")]
         [HttpGet("GetPending", Name = "GetPending")]
-        public ActionResult<List<Attraction>> GetPending()
+        public ActionResult<List<AttractionDto>> GetPending()
         {
             return _db.Attractions
-                .Include(a => a.Writer)
-                .Include(a => a.Type)
-                .Include(a => a.Town)
                 .Where(a => !a.IsAccepted)
+                .Select(attraction =>
+                    new AttractionDto
+                    {
+                        Id = attraction.Id,
+                        Name = attraction.Name,
+                        Description = attraction.Description,
+                        BannerImageUrl = attraction.BannerImageUrl,
+                        TownName = attraction.Town.Name,
+                        TypeName = attraction.Type.Name,
+                        WebsiteUrl = attraction.WebsiteUrl,
+                        InstagramUrl = attraction.InstagramUrl,
+                        FacebookUrl = attraction.FacebookUrl,
+                        MapsEmbedUrl = attraction.MapsEmbedUrl,
+                        PhoneNumber = attraction.PhoneNumber,
+                        WriterId = attraction.WriterId,
+                        WriterName = attraction.Writer.FirstName + " " + attraction.Writer.LastName
+                    }
+                )
                 .ToList();
         }
 
         //returns all attractions (for editing/deleting by admin or editor)
         [Authorize(Roles = "Admin, Editor")]
         [HttpGet("GetAll", Name = "GetAll")]
-        public ActionResult<List<Attraction>> GetAll()
+        public ActionResult<List<AttractionDto>> GetAll()
         {
             return _db.Attractions
-                .Include(a => a.Writer)
-                .Include(a => a.Type)
-                .Include(a => a.Town)
+                .Select(attraction =>
+                    new AttractionDto
+                    {
+                        Id = attraction.Id,
+                        Name = attraction.Name,
+                        Description = attraction.Description,
+                        BannerImageUrl = attraction.BannerImageUrl,
+                        TownName = attraction.Town.Name,
+                        TypeName = attraction.Type.Name,
+                        WebsiteUrl = attraction.WebsiteUrl,
+                        InstagramUrl = attraction.InstagramUrl,
+                        FacebookUrl = attraction.FacebookUrl,
+                        MapsEmbedUrl = attraction.MapsEmbedUrl,
+                        PhoneNumber = attraction.PhoneNumber,
+                        WriterId = attraction.WriterId,
+                        WriterName = attraction.Writer.FirstName + " " + attraction.Writer.LastName
+                    }
+                )
                 .ToList();
         }
 
         //returns details of attraction and increments attraction clicks
         [HttpGet("{id}")]
-        public ActionResult<Attraction> Get(int id)
+        public ActionResult<AttractionDto> Get(int id)
         {
-
-            Attraction? attractionData = _db.Attractions
-                                            .Include(a => a.Type)
-                                            .Include(a => a.Town)
-                                            .Include(a => a.Images)
-                                            .FirstOrDefault(a=>a.Id==id);
+            AttractionDto? attractionData = _db.Attractions
+                .Where(x=>x.Id==id)
+                .Select(attraction =>
+                    new AttractionDto
+                    {
+                        Id = attraction.Id,
+                        Name = attraction.Name,
+                        Description = attraction.Description,
+                        BannerImageUrl = attraction.BannerImageUrl,
+                        TownName = attraction.Town.Name,
+                        TypeName = attraction.Type.Name,
+                        WebsiteUrl = attraction.WebsiteUrl,
+                        InstagramUrl = attraction.InstagramUrl,
+                        FacebookUrl = attraction.FacebookUrl,
+                        MapsEmbedUrl = attraction.MapsEmbedUrl,
+                        PhoneNumber = attraction.PhoneNumber,
+                        IsAccepted = attraction.IsAccepted
+                    }
+                )
+                .FirstOrDefault();
 
             if (attractionData == null) return NotFound();
 
             //Restricts access to details of pending attractions for unauthorized users
-            if (!attractionData.IsAccepted)
+            if (!attractionData.IsAccepted.Value)
             {
                 if (!User.Identity.IsAuthenticated)
                 {
@@ -84,7 +143,7 @@ namespace BulTur.Server.Controllers
             string cookieKey = $"attraction_{id}_clicked";
             if (!Request.Cookies.ContainsKey(cookieKey))
             {
-                attractionData.Clicks += 1;
+                _db.Attractions.Find(id).Clicks += 1;
 
                 // Set a cookie with a 24 hours to stop user from incrementing clicks non stop
                 Response.Cookies.Append(cookieKey, "true", new CookieOptions

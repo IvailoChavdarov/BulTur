@@ -1,9 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using BulTur.Server.Models;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 namespace BulTur.Server.Dto
 {
-    public class AttractionCreateDto
+    public class AttractionDto
     {
+        public int Id { get; set; }
+
         [Required]
         public string Name { get; set; }
 
@@ -14,10 +18,10 @@ namespace BulTur.Server.Dto
         public string? BannerImageUrl { get; set; }
 
         [Required]
-        public ushort TownId { get; set; }
+        public string TownName { get; set; }
 
         [Required]
-        public ushort TypeId { get; set; }
+        public string TypeName { get; set; }
 
         [Url]
         public string? WebsiteUrl { get; set; }
@@ -28,13 +32,20 @@ namespace BulTur.Server.Dto
         [Url]
         public string? FacebookUrl { get; set; }
 
-        //Url with which the website will embed window from Google Maps (go to location in maps, click share, embed in website, then the link in src="...")
         [Url]
         public string? MapsEmbedUrl { get; set; }
 
         [Phone]
         public string? PhoneNumber { get; set; }
 
+        public string? WriterName { get; set; }
         public string? WriterId { get; set; }
+
+        public bool? IsAccepted { get; set; }
+
+        [Required]
+        public int Clicks { get; set; }
+
+        public IEnumerable<AttractionImage>? Images { get; set; }
     }
 }

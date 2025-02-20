@@ -17,7 +17,7 @@ function Banner({ title, subTitle, subTitleExplain, backgroundImage }) {
 }
 
 Banner.propTypes = {
-    title: PropTypes.string.isRequired,
+    title: PropTypes.string,
     subTitle: PropTypes.string,
     backgroundImage: PropTypes.string,
     subTitleExplain: PropTypes.string

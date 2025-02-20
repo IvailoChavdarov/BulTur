@@ -1,0 +1,101 @@
+@import '../../styles/colors.scss';
+.attraction-card {
+    margin: 0px;
+    padding: 0px;
+    position: relative;
+    width: 33%;
+    margin: auto;
+    margin-top: 20px;
+    height: 550px;
+    margin-bottom: 30px;
+
+    .attraction-card-data {
+        padding: 20px;
+        position: relative;
+        padding-bottom: 30px;
+    }
+
+    img {
+        width: 100%;
+        height: 200px;
+    }
+
+    p {
+        height: 175px;
+        line-height: 22px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 8;
+        -webkit-box-orient: vertical;
+        font-size: large;
+    }
+
+    h4 {
+        margin-top:17px;
+        font-size: x-large;
+    }
+
+    a {
+        display: block;
+    }
+
+    .type-link, .location-link {
+        margin-bottom: 0;
+        text-decoration: none;
+        transition: color .2s ease;
+
+        &:hover {
+            color: $text-accent;
+        }
+    }
+
+    .links-overlay {
+        position: absolute;
+        top: 0;
+        margin: 20px;
+        left: 0;
+        right: 0;
+        height: 200px;
+        background-color: rgba($main-color,0.25);
+
+        .type-link {
+            background-color: $main-color;
+            display: inline-block;
+            padding: 10px;
+            color: $light-text;
+            font-size: large;
+            margin: 15px;
+        }
+    }
+
+    .location-link {
+        
+        margin: 7px;
+        color: $main-color;
+
+        svg {
+            margin-right: 5px;
+        }
+    }
+
+    .seeMore-link {
+        position: absolute;
+        bottom: 0px;
+        font-size: larger;
+        text-decoration: none;
+        color: $main-color;
+        text-decoration: none;
+        color: inherit;
+        outline: none;
+        transition: background-color .2s ease-out;
+        display: inline-block;
+        padding: 7px;
+        border-bottom: 0.2em solid $text-accent;
+
+        &:hover {
+            background-color: $text-accent;
+            color: $main-color
+        }
+    }
+}
