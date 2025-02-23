@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import './AttractionsCards.scss'
 import AttractionCard from '../AttractionCard/AttractionCard'
 function AttractionsCards({ attractions }) {
-    console.log(attractions)
     return (
         <div className="attractionCards-container">
             {attractions.map(attraction =>

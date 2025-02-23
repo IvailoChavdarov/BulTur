@@ -1,0 +1,47 @@
+@import '../../styles/colors.scss';
+.types-container {
+    $card-height: 200px;
+    $card-width: 23%;
+    display: flex;
+    max-width: 87vw;
+    margin: auto;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding-top: 95px;
+
+    .type-card {
+        display: inline-block;
+        height: $card-height;
+        width: $card-width;
+        margin-bottom: 50px;
+        position: relative;
+        min-width: 280px;
+
+        h1 {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            bottom: -21px;
+            color: $light-text;
+            background-color: $main-color;
+        }
+
+        img {
+            width: 100%;
+            height: $card-height;
+            position: absolute;
+            -webkit-transition: all 0.3s ease;
+            -moz-transition: all 0.3s ease;
+            -o-transition: all 0.3s ease;
+            -ms-transition: all 0.3s ease;
+            transition: bottom 0.3s ease 0s, all .3s;
+            bottom: 0;
+            -webkit-filter: brightness(100%);
+        }
+
+        &:hover img {
+            bottom: 36px;
+            -webkit-filter: brightness(80%);
+        }
+    }
+}
