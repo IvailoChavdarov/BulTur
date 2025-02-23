@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import './TypesList.scss'
 
 function TypesPage({ types }) {
-    console.log(types)
     return (
         <div className="types-container">
             {types.map(type =>

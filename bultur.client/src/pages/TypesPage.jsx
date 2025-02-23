@@ -1,6 +1,6 @@
 import TypesList from '../components/TypesList/TypesList'
 import { useEffect, useState } from "react";
-
+import Loader from '../components/Loader/Loader'
 function TypesPage() {
     const [types, setTypes] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -20,7 +20,7 @@ function TypesPage() {
         <>
             {/*TODO: Create Loader component*/}
             
-            {loading ? <div>Loading...</div> : <TypesList types={types} />}
+            {loading ? <Loader /> : <TypesList types={types} />}
         </>
     )
 }

@@ -1,0 +1,38 @@
+@import '../../styles/colors.scss';
+
+.loader-container{
+    text-align:center;
+    padding:100px;
+}
+
+.loader {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    box-sizing: border-box;
+
+    &:after {
+        content: " ";
+        display: block;
+        width: 64px;
+        height: 64px;
+        margin: 8px;
+        border-radius: 50%;
+        box-sizing: border-box;
+        border: 6.4px solid $main-color;
+        border-color: $main-color transparent $main-color transparent;
+        animation: loader-rotate 1.2s linear infinite;
+    }
+}
+
+
+
+@keyframes loader-rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
