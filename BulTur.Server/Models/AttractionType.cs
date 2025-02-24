@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using BulTur.Server.Dto;
 
 namespace BulTur.Server.Models
 {
@@ -21,6 +22,9 @@ namespace BulTur.Server.Models
 
         [NotMapped]
         public IEnumerable<Attraction> Attractions { get; set; }
+
+        [NotMapped]
+        public IEnumerable<AttractionDto> AttractionsData { get; set; }
 
         public static List<AttractionType> GetDefaultAttractionTypes()
         {

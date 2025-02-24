@@ -25,16 +25,36 @@ namespace BulTur.Server.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult Get(ushort id)
+        public ActionResult<AttractionType> Get(string id)
         {
             AttractionType? attractionType = _db.AttractionTypes
-                .Include(at => at.Attractions)
-                .FirstOrDefault(at => at.Id == id);
-            if (attractionType != null)
+                .FirstOrDefault(at => at.Name == id);
+            if (attractionType == null)
             {
-                return Ok(attractionType);
+                return NotFound();
             }
-            return NotFound();
+            attractionType.AttractionsData = _db.Attractions
+                .Where(x => x.IsAccepted && x.TypeId == attractionType.Id)
+                .Select(attraction =>
+                    new AttractionDto
+                    {
+                        Id = attraction.Id,
+                        Name = attraction.Name,
+                        Description = attraction.Description,
+                        BannerImageUrl = attraction.BannerImageUrl,
+                        TownName = attraction.Town.Name,
+                        TypeName = attraction.Type.Name,
+                        WebsiteUrl = attraction.WebsiteUrl,
+                        InstagramUrl = attraction.InstagramUrl,
+                        FacebookUrl = attraction.FacebookUrl,
+                        MapsEmbedUrl = attraction.MapsEmbedUrl,
+                        PhoneNumber = attraction.PhoneNumber,
+                        Clicks = attraction.Clicks
+                    }
+                )
+                .OrderByDescending(x => x.Clicks)
+                .ToList();
+            return attractionType;
         }
 
         [Authorize(Roles = "Admin, Editor")]

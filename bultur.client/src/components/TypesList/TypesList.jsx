@@ -6,8 +6,8 @@ function TypesPage({ types }) {
     return (
         <div className="types-container">
             {types.map(type =>
-                <Link to={'/' + type.name.toLowerCase()} key={type.id} className="type-card">
-                    <h1>{type.name}</h1>
+                <Link to={'/type/' + type.name.toLowerCase()} key={type.id} className="type-card">
+                    <h2>{type.name}</h2>
                     <img src={type.bannerImageUrl}></img>
                 </Link>
             )}

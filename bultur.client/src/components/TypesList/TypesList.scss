@@ -17,13 +17,15 @@
         position: relative;
         min-width: 280px;
 
-        h1 {
+        h2 {
             position: absolute;
             width: 100%;
             text-align: center;
-            bottom: -21px;
+            bottom: -27px;
             color: $light-text;
             background-color: $main-color;
+            font-size:2em;
+            padding-bottom:2px;
         }
 
         img {
