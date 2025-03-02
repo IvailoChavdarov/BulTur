@@ -1,0 +1,55 @@
+@import '../../styles/colors.scss';
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
+
+.map-side {
+    display: inline-block;
+    height: 500px;
+    min-width: 20vw;
+    width: 100%;
+    max-width: 50%;
+    position: absolute;
+    right: 0;
+    h1 {
+        color: $main-color;
+        padding: 20px;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    .map-side-content {
+        font-size: large;
+        background-color: $background-dark;
+        padding: 25px;
+        font-family: 'Lora', serif;
+        min-height: 400px;
+        padding-top:10px;
+        p{
+            font-size:20px;
+        }
+        svg{
+            width:50px;
+            transform:scale(1.2)
+        }
+        ul{
+            list-style:none;
+            padding-left:10px;
+            line-height:30px;
+        }
+        .idea-title{
+            font-weight:bold;
+        }
+    }
+}
+.map-container {
+    padding-top: 30px;
+    display: flex;
+    background-color:$light-text;
+    height:fit-content;
+    padding-bottom:70px;
+}
+#textBoxMap{
+    a{
+        position:absolute;
+        left:120vw;
+    }
+}
