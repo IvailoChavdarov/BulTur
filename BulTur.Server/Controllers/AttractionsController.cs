@@ -23,7 +23,7 @@ namespace BulTur.Server.Controllers
 
         //returns attractions that will be shown to the user
         [HttpGet]
-        public ActionResult<List<AttractionDto>> Get()
+        public ActionResult<List<AttractionDto>> Get(int? count)
         {
             return _db.Attractions
                 .Where(x=>x.IsAccepted)

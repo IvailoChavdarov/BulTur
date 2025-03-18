@@ -10,7 +10,7 @@ function AttractionCard({id, name, description, image, town, type }) {
             <div className="attraction-card-data">
                 <img src={image} />
                 <div className="links-overlay">
-                    <Link className="type-link">{type}</Link>
+                    <Link className="type-link" to={"/type/" + type}>{type}</Link>
                 </div>
                 <Link className="location-link"><FontAwesomeIcon icon={faLocationDot} />{town}</Link>
                 <h4>{name}</h4>

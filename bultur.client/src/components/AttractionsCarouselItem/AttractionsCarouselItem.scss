@@ -1,0 +1,83 @@
+@import '../../styles/colors.scss';
+.attraction-carousel-card {
+    display: inline-block;
+    width: 300px;
+    overflow: hidden;
+    padding: 20px;
+
+    &:active {
+        cursor: grabbing;
+    }
+
+    .attraction-carousel-card-data {
+        margin: 10px;
+        padding: 10px;
+        height: 440px;
+        overflow: hidden;
+        border-radius: 15px;
+        border: 3px solid transparent;
+
+        img {
+            width: 280px;
+            margin: -11px;
+            height: 160px;
+        }
+
+        h4 {
+            font-size: x-large;
+            height: 50px;
+            color: $main-color;
+            margin-bottom: 15px;
+        }
+
+        p {
+            height: 100px;
+            line-height: 22px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 5;
+            -webkit-box-orient: vertical;
+            font-size: large;
+            padding-top: 10px;
+            padding-bottom: 10px;
+
+            &:before {
+                content: '';
+                width: 275px;
+                margin-left: -10px;
+                height: 1px;
+                background-color: rgba($main-color, 0.7);
+                display: block;
+                position: absolute;
+                margin-top: -10px;
+            }
+        }
+
+        &:hover {
+            border-color: $main-color;
+        }
+
+        .attraction-links {
+            font-size: large;
+
+            a {
+                color: $text-accent;
+                text-decoration: none;
+            }
+
+            a:hover {
+                color: darken($text-accent, 30)
+            }
+        }
+
+        .seeMore-link {
+            text-decoration: none;
+            font-size: large;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
