@@ -1,14 +1,17 @@
 @import '../../styles/colors.scss';
 .AttractionsCarousel {
-    overflow: auto;
-    padding-left: 60px;
-    padding-right: 60px;
+    padding-left: 50px;
+    padding-right: 50px;
     margin-top: 40px;
-    margin-bottom: 40px;
+    margin-bottom:40px;
 
     .slick-slider {
         background-color: white;
         padding: 25px;
-        cursor:grab;
+        cursor: grab;
+    }
+
+    .slick-dots button:before{
+        font-size:60px;
     }
 }

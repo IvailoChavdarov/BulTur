@@ -7,7 +7,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 function AttractionsCarousel({ attractions }) {
     const settings = {
-        dots: false,
+        dots: true,
         infinite: true,
         speed: 700,
         slidesToShow: 4,
